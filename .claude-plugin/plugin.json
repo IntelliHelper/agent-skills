@@ -7,7 +7,7 @@
     "email": "hello@intellihelper.in"
   },
   "homepage": "https://ui.intellihelper.in",
-  "repository": "https://github.com/IntelliHelper/IntelliHelper-UI-Agent-",
+  "repository": "https://github.com/IntelliHelper/agent-skills",
   "license": "MIT",
   "keywords": [
     "intellihelper",

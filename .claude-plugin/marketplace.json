@@ -19,7 +19,7 @@
         "name": "IntelliHelper"
       },
       "homepage": "https://ui.intellihelper.in",
-      "repository": "https://github.com/IntelliHelper/IntelliHelper-UI-Agent-",
+      "repository": "https://github.com/IntelliHelper/agent-skills",
       "license": "MIT",
       "category": "development",
       "keywords": [

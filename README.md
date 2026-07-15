@@ -21,19 +21,19 @@ This repository is the installable unit for **Claude Code**, **Grok CLI**, **Cod
 
 ```bash
 # Add this marketplace, then install the plugin
-claude plugin marketplace add IntelliHelper/IntelliHelper-UI-Agent-
+claude plugin marketplace add IntelliHelper/agent-skills
 claude plugin install intellihelper-ui@intellihelper
 
 # Or load from a local clone while developing
-claude --plugin-dir ./IntelliHelper-UI-Agent-
+claude --plugin-dir ./agent-skills
 ```
 
 ### Grok CLI
 
 ```bash
-grok plugin marketplace add IntelliHelper/IntelliHelper-UI-Agent-
+grok plugin marketplace add IntelliHelper/agent-skills
 # or install the repo directly
-grok plugin install IntelliHelper/IntelliHelper-UI-Agent- --trust
+grok plugin install IntelliHelper/agent-skills --trust
 
 grok plugin validate .
 grok plugin details intellihelper-ui
@@ -44,7 +44,7 @@ Enable / trust the plugin so **hooks and MCP** activate. Then open `/plugins` or
 ### Codex
 
 ```bash
-codex plugin marketplace add IntelliHelper/IntelliHelper-UI-Agent-
+codex plugin marketplace add IntelliHelper/agent-skills
 # Then install intellihelper-ui from /plugins
 ```
 
@@ -60,13 +60,13 @@ npx @intellihelper/cli@latest mcp init --client cursor
 Optionally install skills via [skills.sh](https://skills.sh):
 
 ```bash
-npx skills add IntelliHelper/IntelliHelper-UI-Agent-
+npx skills add IntelliHelper/agent-skills
 ```
 
 ### Gemini CLI
 
 ```bash
-gemini extensions install https://github.com/IntelliHelper/IntelliHelper-UI-Agent-
+gemini extensions install https://github.com/IntelliHelper/agent-skills
 ```
 
 ### MCP only (any agent)
@@ -191,8 +191,8 @@ Docs: [ui.intellihelper.in](https://ui.intellihelper.in) · CLI: [`@intellihelpe
 ## Local development
 
 ```bash
-git clone https://github.com/IntelliHelper/IntelliHelper-UI-Agent-.git
-cd IntelliHelper-UI-Agent-
+git clone https://github.com/IntelliHelper/agent-skills.git
+cd agent-skills
 ./scripts/validate.sh
 
 # Claude
