@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "intellihelper-ui": {
+      "command": "npx",
+      "args": ["-y", "@intellihelper/cli@latest", "mcp"]
+    }
+  }
+}

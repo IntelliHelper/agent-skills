@@ -1,0 +1,22 @@
+{
+  "name": "intellihelper-ui",
+  "version": "1.0.0",
+  "description": "Official IntelliHelper UI agent plugin — Liquid Glass React components via MCP tools, skills, and slash commands.",
+  "author": {
+    "name": "IntelliHelper",
+    "url": "https://intellihelper.in"
+  },
+  "homepage": "https://ui.intellihelper.in",
+  "repository": "https://github.com/IntelliHelper/IntelliHelper-UI-Agent-",
+  "license": "MIT",
+  "keywords": [
+    "intellihelper",
+    "ui",
+    "liquid-glass",
+    "react",
+    "components",
+    "mcp",
+    "shadcn"
+  ],
+  "logo": "assets/logo.png"
+}

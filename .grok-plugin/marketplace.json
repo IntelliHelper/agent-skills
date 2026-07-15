@@ -1,0 +1,25 @@
+{
+  "name": "intellihelper",
+  "description": "Official IntelliHelper agent plugins",
+  "owner": {
+    "name": "IntelliHelper"
+  },
+  "plugins": [
+    {
+      "name": "intellihelper-ui",
+      "description": "Liquid Glass React component library for agents: MCP registry tools, design-system skills, slash commands, and a UI builder agent.",
+      "category": "development",
+      "source": "./",
+      "homepage": "https://ui.intellihelper.in",
+      "keywords": [
+        "intellihelper",
+        "ui",
+        "liquid glass",
+        "react",
+        "mcp",
+        "components"
+      ],
+      "domains": ["ui.intellihelper.in", "intellihelper.in"]
+    }
+  ]
+}

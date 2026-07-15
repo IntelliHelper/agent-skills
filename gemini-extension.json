@@ -1,0 +1,11 @@
+{
+  "name": "intellihelper-ui",
+  "version": "1.0.0",
+  "description": "Official Gemini extension for IntelliHelper UI (MCP Server + Skills). Liquid Glass React components for coding agents.",
+  "mcpServers": {
+    "intellihelper-ui": {
+      "command": "npx",
+      "args": ["-y", "@intellihelper/cli@latest", "mcp"]
+    }
+  }
+}
