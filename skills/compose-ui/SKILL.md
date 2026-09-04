@@ -1,10 +1,12 @@
 ---
 name: compose-ui
 description: >-
-  Compose production pages with IntelliHelper UI components — settings, dashboards,
-  auth, CRUD tables, empty/loading/error states, mobile nav, and glass-stage
-  layouts. Use when building screens, layouts, or multi-component flows rather
-  than installing a single primitive. Prefer registry composition over custom shells.
+  Compose production pages and Expo screens with IntelliHelper UI components —
+  settings, dashboards, auth, CRUD tables, empty/loading/error states, mobile
+  nav, and glass-stage layouts. Use when building screens, layouts, or
+  multi-component flows rather than installing a single primitive.
+  Prefer registry composition over custom shells. Triggers include Expo /
+  React Native screens using @native/ components.
 ---
 
 # Compose UI with IntelliHelper
@@ -35,8 +37,14 @@ Build **screens**, not isolated widgets. Always:
 Install only what you need:
 
 ```bash
+# Web
 npx @intellihelper/cli@latest add tabs card button input alert table sheet dialog empty skeleton -y
+
+# Expo / React Native (same slugs, namespaced)
+npx @intellihelper/cli@latest add @native/card @native/button @native/input @native/alert @native/sheet -y
 ```
+
+On native, wrap the app in `ThemeProvider` from `@/components/ui/native/theme`. Do not paste web `className` recipes into RN.
 
 ## Composition recipes
 
@@ -113,3 +121,5 @@ Use `empty` when available; otherwise compose with `card` + typography + buttons
 - Custom modal without focus trap when `dialog` exists
 - Hard-coded colors fighting the active theme
 - Importing monorepo packages in consumer apps
+- Using web `get_component_examples` as Expo/React Native source
+- Installing unprefixed web components into a native screen

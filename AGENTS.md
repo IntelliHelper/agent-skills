@@ -19,4 +19,5 @@ claude --plugin-dir .
 
 - “List IntelliHelper glass-system components”
 - “Add button and dialog with IntelliHelper UI”
+- “Add @native/button in Expo”
 - “What themes does IntelliHelper UI support?”

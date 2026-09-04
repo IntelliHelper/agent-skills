@@ -33,7 +33,7 @@ claude plugin validate . # if Claude Code installed
 - [ ] Frontmatter `name` matches folder name
 - [ ] `description` includes triggers and when-to-use
 - [ ] MCP tool names match `@intellihelper/cli` (`get_project_config`, `search_components`, …)
-- [ ] Consumer import paths use `@/components/ui`, not `@intelli/ui`
+- [ ] Consumer import paths use `@/components/ui` (web) or `@/components/ui/native` (Expo), never `@intelli/ui`
 - [ ] Links to https://ui.intellihelper.in where helpful
 
 ## Releases
