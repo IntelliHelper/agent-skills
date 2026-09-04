@@ -15,4 +15,6 @@ Follow skill `add-component` strictly:
 5. Show a short summary of files added and example imports using the project's UI alias.
 6. Call `get_audit_checklist` and fix any obvious gaps.
 
-If `$ARGUMENTS` is empty, ask which components to install or offer popular starters: `button`, `card`, `dialog`, `input`.
+If `$ARGUMENTS` is empty, ask which components to install or offer popular starters: `button`, `card`, `dialog`, `input` (web) or `@native/button`, `@native/card` (Expo).
+
+If the project is Expo/React Native, prefix names with `@native/` unless they already are.

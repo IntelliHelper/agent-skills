@@ -51,7 +51,8 @@ Prefer these over custom `backdrop-blur` one-offs:
 | `component-preview` | Live preview + source (docs/playground style) |
 | `card` | Frosted panels for chrome and content layouts |
 
-Install: `npx @intellihelper/cli@latest add glass-bar glass-icon-button card -y`
+Install (web): `npx @intellihelper/cli@latest add glass-bar glass-icon-button card -y`  
+Install (native): `npx @intellihelper/cli@latest add @native/glass-bar @native/glass-icon-button @native/card -y`
 
 ## Button language (verify with `get_component`)
 
@@ -97,7 +98,7 @@ Ship interfaces that feel intentional:
 - Nested glass cards three levels deep
 - Random gradients + glow competing with theme
 - Ignoring `focusRing` / keyboard focus styles
-- Using playground internal imports (`@intelli/ui`, `@intelli/utils`) in consumer apps
+- Using playground internal imports (`@intelli/ui`, `@intelli/ui-native`, `@intelli/utils`) in consumer apps
 
 ## Progressive disclosure
 

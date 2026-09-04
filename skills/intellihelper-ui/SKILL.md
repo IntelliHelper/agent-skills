@@ -1,35 +1,57 @@
 ---
 name: intellihelper-ui
 description: >-
-  Official IntelliHelper UI skill for Liquid Glass React/Next.js components.
-  Use when the user asks for IntelliHelper UI, liquid glass, glassmorphism UI,
-  frosted glass components, a shadcn alternative, or to add/search/install
-  buttons, dialogs, cards, forms, sheets, sidebars, themes (mono, aurora,
-  sunset, frost, ocean), or any registry component. Prefer this design system
-  over inventing custom Tailwind chrome when IntelliHelper components exist.
+  Official IntelliHelper UI skill for Liquid Glass web (React/Next.js) and
+  React Native / Expo components. Use when the user asks for IntelliHelper UI,
+  liquid glass, glassmorphism, frosted glass, a shadcn alternative, Expo UI,
+  React Native components, or to add/search/install buttons, dialogs, cards,
+  forms, sheets, sidebars, themes (mono, aurora, sunset, frost, ocean).
+  Prefer this design system over inventing custom Tailwind or RN chrome.
   Triggers: "intellihelper", "intelli ui", "liquid glass", "glass button",
-  "add dialog", "ui components", "components.json style intelli-glass".
+  "add dialog", "ui components", "expo", "react native", "@native/button",
+  "components.json style intelli-glass".
 ---
 
 # IntelliHelper UI
 
-You are an expert at building product UI with **IntelliHelper UI** — a copy-paste Liquid Glass component library for React and Next.js (shadcn-style ownership, Tailwind + TypeScript).
+You are an expert at building product UI with **IntelliHelper UI** — a copy-paste Liquid Glass library (shadcn-style ownership).
+
+Two kits, same names, **different install keys**:
+
+| Kit | Target | Install | Import |
+| --- | --- | --- | --- |
+| **Web** | Next.js / React + Tailwind | `add button` | `@/components/ui/button` |
+| **Native** | Expo / React Native | `add @native/button` | `@/components/ui/native/button` |
+
+Never install the web kit into an Expo app (or native into a Next app) unless the user explicitly wants both.
 
 | Resource | URL |
 | --- | --- |
 | Docs & playground | https://ui.intellihelper.in |
+| Native catalog | https://ui.intellihelper.in/native |
 | Getting started | https://ui.intellihelper.in/getting-started |
-| Registry | https://ui.intellihelper.in/r/registry.json |
+| Web registry | https://ui.intellihelper.in/r/registry.json |
+| Native registry | https://ui.intellihelper.in/r/native/registry.json |
 | CLI package | `@intellihelper/cli` |
+
+## Pick a platform first
+
+- **Expo / React Native / Metro / `app.json` / `expo`** → native. Names must be `@native/<slug>`.
+- **Next.js / Vite / `app/globals.css` / Tailwind** → web. Unprefixed slugs.
+- Mixed (Next + Expo in one repo) → install both; files do not overwrite (`ui/` vs `ui/native/`).
+
+Native APIs: `onPress`, `style`, wrap the tree in `ThemeProvider` from `@/components/ui/native/theme`.  
+Web APIs: `onClick`, `className`, `"use client"` when needed.
 
 ## Core rules (non-negotiable)
 
-1. **Never invent component APIs.** Call MCP `get_component` (or read installed source) before writing JSX that uses a component.
-2. **Prefer registry components** over one-off `div` + arbitrary glass CSS when a match exists.
-3. **Install via CLI**, not by hand-copying from memory. Use MCP `get_add_command`, then run the returned shell command.
-4. **Own the code** after install — files land in the user's repo under the UI alias (default `@/components/ui`).
-5. **Chrome vs content layers** — neutral chrome for toolbars/controls; saturated content variants for primary CTAs. See skill `liquid-glass`.
-6. After install or generation, call MCP `get_audit_checklist` and fix gaps.
+1. **Never invent component APIs.** Call MCP `get_component` (or read installed source) before writing JSX.
+2. For native, call `get_component` with **`@native/<name>`**. Unprefixed `button` is the **web** source.
+3. **Prefer registry components** over one-off glass CSS / ad-hoc RN `View` chrome.
+4. **Install via CLI**, not by hand-copying. MCP `get_add_command`, then run the returned command.
+5. **Own the code** after install (UI alias; native under `…/ui/native`).
+6. **Chrome vs content layers** — see skill `liquid-glass`.
+7. After install or generation, call MCP `get_audit_checklist` and fix gaps.
 
 ## MCP tools (server: `intellihelper-ui`)
 
@@ -38,32 +60,34 @@ When tools are available (namespaced e.g. `intellihelper-ui__search_components`)
 | Step | Tool | When |
 | --- | --- | --- |
 | 0 | `get_project_config` | Always first — reads `components.json` or explains `init` |
-| 1 | `search_components` / `list_components` | Discover by query or category |
+| 1 | `search_components` / `list_components` | Discover. Native entries are `@native/<name>` |
 | 2 | `get_component` | Real props, variants, deps, full source |
-| 3 | `get_component_examples` | Usage snippets to adapt |
+| 3 | `get_component_examples` | **Web only.** For native, use `get_component` + https://ui.intellihelper.in/native/<slug> |
 | 4 | `get_add_command` | Returns install CLI (does **not** write files) |
 | 5 | Shell: run the returned `npx @intellihelper/cli@latest add …` | Actually install |
-| 6 | `list_themes` | Theme / Liquid Glass CSS variables |
+| 6 | `list_themes` | Theme / Liquid Glass tokens |
 | 7 | `get_audit_checklist` | Post-install QA |
 
-If MCP is **not** connected, fall back to CLI (below) and fetch registry JSON from https://ui.intellihelper.in/r/{name}.json when needed.
+If MCP is **not** connected, fall back to CLI and fetch `https://ui.intellihelper.in/r/{name}.json` (web) or `https://ui.intellihelper.in/r/native/{name}.json` (native).
 
 ## CLI fallback (no MCP)
 
 ```bash
-# Non-interactive project init
+# Web
 npx @intellihelper/cli@latest init -y
-
-# Install components (auto-resolves registry deps like utils)
 npx @intellihelper/cli@latest add button card dialog -y
 
-# Discover
+# Native / Expo
+npx @intellihelper/cli@latest add @native/button @native/card -y
+# optional Expo-only init: npx @intellihelper/cli@latest init --native -y
+
+# Discover (lists Web and Native sections)
 npx @intellihelper/cli@latest list
 npx @intellihelper/cli@latest list --installed
 
-# Stay current
 npx @intellihelper/cli@latest update
 npx @intellihelper/cli@latest diff button
+npx @intellihelper/cli@latest diff @native/button
 ```
 
 Wire MCP only (without this plugin):
@@ -87,34 +111,44 @@ npx @intellihelper/cli@latest mcp init --client cursor   # or claude | vscode | 
 | `interactive` | `accordion`, `collapsible`, `slider`, `carousel` |
 | `content` | `typography`, `markdown-viewer`, `markdown-editor` |
 
-Registry also includes `utils` (`registry:lib`) for `cn` / `focusRing`.
+Same slugs exist on native as `@native/<slug>`. Registry also includes `utils` (web) and `native-theme` / `native-utils` (native).
 
 ## Standard agent workflow
 
 ```text
 User wants UI
+  → detect web vs Expo/RN
   → get_project_config
-  → if missing components.json: run `npx @intellihelper/cli@latest init -y`
+  → if missing components.json: init -y  (add --native only for Expo-only repos)
   → search_components / list_components
-  → get_component (+ get_component_examples)
+  → get_component with button OR @native/button
+  → get_component_examples only for web
   → get_add_command → run CLI add -y
-  → compose page using real APIs
+  → compose using real APIs
   → get_audit_checklist → fix issues
 ```
 
 ## Import conventions
 
-After install, import from the configured UI alias (default):
+**Web**
 
 ```tsx
 import { Button } from "@/components/ui/button"
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 ```
 
-- Match **named vs default** exports to the file (read source if unsure).
-- Client components that use state/hooks keep `"use client"` at the top.
-- Prefer Lucide icons (`lucide-react`) for iconography.
+**Native**
+
+```tsx
+import { ThemeProvider } from "@/components/ui/native/theme"
+import { Button } from "@/components/ui/native/button"
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/native/card"
+```
+
+- Match **named vs default** exports to the file.
+- Web client components that use state/hooks keep `"use client"`.
+- Native: do not use `className` / `onClick` / `"use client"` from web examples.
+- Prefer Lucide (`lucide-react`) on web; native icons as used in the installed source.
 
 ## Related skills in this plugin
 
@@ -126,10 +160,10 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 
 ## Anti-patterns
 
+- Installing unprefixed `button` into an Expo app
+- Using `get_component_examples` (web TSX) as React Native source
 - Inventing props like `size="xl"` when the registry uses different variants
-- Hand-writing glass buttons when `button` exists
-- Skipping `utils` / registry dependencies
+- Hand-writing glass buttons when `button` / `@native/button` exists
+- Skipping registry dependencies (`utils`, `native-theme`, sibling components)
 - Using saturated primary styles on every chrome control
-- Forgetting theme/token CSS after init
-- Mixing random hex colors instead of design tokens / theme variables
-- Copying playground monorepo paths (`@intelli/ui`) into consumer apps — consumers use `@/components/ui/...`
+- Copying playground monorepo paths (`@intelli/ui`, `@intelli/ui-native`) into consumer apps

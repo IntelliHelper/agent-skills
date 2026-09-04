@@ -1,7 +1,7 @@
 {
   "name": "intellihelper-ui",
-  "version": "1.0.0",
-  "description": "Official IntelliHelper UI agent plugin — Liquid Glass React components via MCP tools, skills, and slash commands.",
+  "version": "1.1.0",
+  "description": "Official IntelliHelper UI agent plugin — Liquid Glass web and React Native/Expo components via MCP, skills, and slash commands.",
   "author": {
     "name": "IntelliHelper"
   },

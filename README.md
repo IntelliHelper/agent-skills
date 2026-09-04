@@ -1,6 +1,6 @@
 # IntelliHelper UI Agent
 
-**Official agent plugin** for [IntelliHelper UI](https://ui.intellihelper.in) — Liquid Glass React components for coding agents.
+**Official agent plugin** for [IntelliHelper UI](https://ui.intellihelper.in) — Liquid Glass components for **web (React/Next.js)** and **React Native / Expo**.
 
 This repository is the installable unit for **Claude Code**, **Grok CLI**, **Codex**, **Cursor**, **Gemini CLI**, and any client that supports Agent Skills + MCP.
 
@@ -120,8 +120,8 @@ Manual MCP config:
 | `get_project_config` | Read `components.json` / init guidance |
 | `list_components` | Browse by category |
 | `search_components` | Fuzzy search |
-| `get_component` | Source, variants, dependencies |
-| `get_component_examples` | Usage snippets |
+| `get_component` | Source, variants, dependencies (`@native/<name>` for Expo) |
+| `get_component_examples` | Web usage snippets (not for React Native) |
 | `get_add_command` | CLI install command (does not write files) |
 | `list_themes` | mono · aurora · sunset · frost · ocean |
 | `get_audit_checklist` | Post-install QA |
@@ -155,6 +155,7 @@ After install + trust:
 
 - “Show me all IntelliHelper glass components”
 - “Add button, dialog, and card from IntelliHelper UI”
+- “Add @native/button to my Expo app”
 - “Build a settings page with Liquid Glass”
 - “Search IntelliHelper UI for form inputs”
 - “Audit this project for IntelliHelper setup”
@@ -166,6 +167,7 @@ After install + trust:
 ```bash
 npx @intellihelper/cli@latest init -y
 npx @intellihelper/cli@latest add button card dialog -y
+npx @intellihelper/cli@latest add @native/button @native/card -y
 ```
 
 ```tsx
@@ -184,7 +186,16 @@ export function Example() {
 }
 ```
 
-Docs: [ui.intellihelper.in](https://ui.intellihelper.in) · CLI: [`@intellihelper/cli`](https://www.npmjs.com/package/@intellihelper/cli) · UI monorepo: [IntelliHelper-UI](https://github.com/IntelliHelper/IntelliHelper-UI)
+Expo / React Native:
+
+```tsx
+import { ThemeProvider } from "@/components/ui/native/theme"
+import { Button } from "@/components/ui/native/button"
+```
+
+Docs: [ui.intellihelper.in](https://ui.intellihelper.in) · Native: [ui.intellihelper.in/native](https://ui.intellihelper.in/native) · CLI: [`@intellihelper/cli`](https://www.npmjs.com/package/@intellihelper/cli) · UI monorepo: [IntelliHelper-UI](https://github.com/IntelliHelper/IntelliHelper-UI)
+
+Native MCP list/get requires a published `@intellihelper/cli` that includes the native registry. Until then, install with `npx @intellihelper/cli add @native/button` from a CLI that has that command.
 
 ---
 
@@ -218,7 +229,8 @@ Agent (Claude / Grok / Codex / …)
         ├── skills / commands / agents   → judgment & workflows
         └── .mcp.json
               └── npx @intellihelper/cli@latest mcp
-                    └── registry https://ui.intellihelper.in/r
+                    └── registries https://ui.intellihelper.in/r
+                        and https://ui.intellihelper.in/r/native
 ```
 
 Keep this repo **thin**. Do not vendor the full UI monorepo.
